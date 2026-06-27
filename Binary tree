@@ -1,0 +1,41 @@
+/*
+class Node {
+    public int data;
+    public Node left;
+    public Node right;
+
+    public Node(int val) {
+        data = val;
+        left = null;
+        right = null;
+    }
+}
+*/
+
+class Solution {
+    public Node buildTree(List<Integer> nodes) {
+        int n = nodes.size();
+        if (n == 0) return null;
+
+        Node[] tree = new Node[n];
+
+        // Create all nodes
+        for (int i = 0; i < n; i++) {
+            tree[i] = new Node(nodes.get(i));
+        }
+
+        // Connect children
+        for (int i = 0; i < n; i++) {
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+
+            if (left < n)
+                tree[i].left = tree[left];
+
+            if (right < n)
+                tree[i].right = tree[right];
+        }
+
+        return tree[0];
+    }
+}
